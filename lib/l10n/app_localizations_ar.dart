@@ -222,7 +222,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get cherry_powdery_mildew_treatment =>
-      'رش الكبريت، تقليم الأجزاء المصابة، وتوفير مسافات مناسبة.';
+      'رش الكبريت، تقليم الأجزاء المصابة، وتوفير مسافات مناسبة. 1- كبريت مكروني (كوزافيت)+ ماكسفون 2- كربندازيم (بريمو + الصاخب) 3- ازوكسي استر وبين (القوس+ادريس)  4- مايكلوبيوتانيل ( كاربتار+ الهرم )';
 
   @override
   String get cherry_healthy => 'كرز سليم';
@@ -290,7 +290,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get potato_early_blight_treatment =>
-      'زراعة أصناف مقاومة، تناوب المحاصيل، واستخدام المبيدات الفطرية.';
+      'إزالة الأوراق المصابة، تناوب المحاصيل، واستخدام المبيدات ازوكسيستروبين +دايفنكونازول (ماكسفون + الفظول ) كربندازيم ( بريمو +الصاخب ابروديون (ريد ور) ';
 
   @override
   String get potato_late_blight => 'اللفحة المتأخرة في البطاطس';
@@ -324,7 +324,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tomato_early_blight_treatment =>
-      'إزالة الأوراق المصابة، تناوب المحاصيل، واستخدام المبيدات.';
+      'إزالة الأوراق المصابة، تناوب المحاصيل، واستخدام المبيدات ازوكسيستروبين +دايفنكونازول (ماكسفون + الفظول ) كربندازيم ( بريمو +الصاخب ابروديون (ريد ور)  ';
 
   @override
   String get tomato_late_blight => 'اللفحة المتأخرة في الطماطم';
@@ -383,7 +383,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get squash_powdery_mildew_treatment =>
-      'رش المبيدات، زراعة أصناف مقاومة، وتجنب الزراعة الكثيفة.';
+      'رش المبيدات، زراعة أصناف مقاومة، وتجنب الزراعة الكثيفة. 1- كبريت مكروني (كوزافيت)+ ماكسفون 2- كربندازيم (بريمو + الصاخب) 3- ازوكسي استر وبين (القوس+ادريس)  4- مايكلوبيوتانيل ( كاربتار+ الهرم )  ';
 
   @override
   String get orange_hlb => 'التدهور السريع (HLB) في البرتقال';
@@ -407,6 +407,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get raspberry_healthy => 'توت علّيق سليم';
+
+  @override
+  String get qaad_borer_Qaad_worm => 'دودة القات (قارض القات)';
+
+  @override
+  String get qaad_borer_Qaad_worm_treatment =>
+      'يتم استخدام المبيدات التالية: -1- اميدا كلوبرايد مثل (ناسف –ميدا-ديكتاتور-واشنطن)2--فنبروباثرين مثل (النمرود ) sw -3 -دلتامثرين (ادوارد-فيزر) 4-اندوكساكارب ( الكابوس –كوبورد )';
+
+  @override
+  String get qaad_fungal_infection_sis => 'Qaad fungal infection(sis)';
+
+  @override
+  String get qaad_fungal_infection_sis_treatment =>
+      'This fungal disease appears after rainfall when humidity is available.Fungicides used to control it include: Azoxystrobin (sold as Al-Qaws or Adis) Myclobutanil (sold as Carptar or Al-Haram)A mixture of Azoxystrobin and Difenoconazole (sold as Al-Fudool or Maxfon)';
+
+  @override
+  String get qaad_powder_mildew => 'البياض الدقيقي في القات';
+
+  @override
+  String get qaad_powder_mildew_treatment =>
+      '1- تقليل من الرطوبة 2- رش ب مبيد فطري جهازي وقائي (ازوكسيستروبين- دايفنكونازول  -مواد مضافة (ماكسفون ) رش كبريت مكروني (كوزافيت)';
 
   @override
   String get diagnosis_failed => 'فشل التشخيص.';
@@ -473,4 +494,46 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tryAgain => 'إعادة المحاولة';
+
+  @override
+  String get noPreviousDiagnoses => 'لا توجد عناصر لعرضها حاليًا';
+
+  @override
+  String get previousDiagnos => 'التشخيصات السابقة';
+
+  @override
+  String get farmer_page_title => 'أسئلة المزارعين';
+
+  @override
+  String get tab_unanswered => 'الاستشارات التي لم يتم الرد عليها';
+
+  @override
+  String get tab_answered => 'الاستشارات التي تم الرد عليها';
+
+  @override
+  String get label_write_question => 'اكتب السؤال هنا';
+
+  @override
+  String get button_pick_image => 'اختر صورة';
+
+  @override
+  String get button_send_question => 'إرسال السؤال';
+
+  @override
+  String get snackbar_question_sent => 'تم إرسال السؤال ✅';
+
+  @override
+  String get label_question => 'السؤال:';
+
+  @override
+  String get label_answer => 'الإجابة:';
+
+  @override
+  String get filter_comment => 'Filter by current farmer';
+
+  @override
+  String get previousQuestions => 'الأسئلة المجابة سابقًا';
+
+  @override
+  String get pendingQuestions => 'الأسئلة قيد الانتظار';
 }

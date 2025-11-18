@@ -842,6 +842,42 @@ abstract class AppLocalizations {
   /// **'Healthy Raspberry'**
   String get raspberry_healthy;
 
+  /// No description provided for @qaad_borer_Qaad_worm.
+  ///
+  /// In en, this message translates to:
+  /// **'Qaad borer (Qaad worm)'**
+  String get qaad_borer_Qaad_worm;
+
+  /// No description provided for @qaad_borer_Qaad_worm_treatment.
+  ///
+  /// In en, this message translates to:
+  /// **'The following insecticides are used:1- Imidacloprid (Nasf, Mida, Dictator, Washington) 2-Fenpropathrin (Al-Namroud – SW) 3-Deltamethrin (Edward, Fizer) 4- Indoxacarb (Al-Kaboos, Cupboard)'**
+  String get qaad_borer_Qaad_worm_treatment;
+
+  /// No description provided for @qaad_fungal_infection_sis.
+  ///
+  /// In en, this message translates to:
+  /// **'Qaad fungal infection(sis)'**
+  String get qaad_fungal_infection_sis;
+
+  /// No description provided for @qaad_fungal_infection_sis_treatment.
+  ///
+  /// In en, this message translates to:
+  /// **'This fungal disease appears after rainfall when humidity is available.Fungicides used to control it include: Azoxystrobin (sold as Al-Qaws or Adis) Myclobutanil (sold as Carptar or Al-Haram)A mixture of Azoxystrobin and Difenoconazole (sold as Al-Fudool or Maxfon)'**
+  String get qaad_fungal_infection_sis_treatment;
+
+  /// No description provided for @qaad_powder_mildew.
+  ///
+  /// In en, this message translates to:
+  /// **'powder_mildew in qaad'**
+  String get qaad_powder_mildew;
+
+  /// No description provided for @qaad_powder_mildew_treatment.
+  ///
+  /// In en, this message translates to:
+  /// **'Control measures:1- Reduce humidity.2- Spray a systemic preventive fungicide such as Azoxystrobin + Difenoconazole with additives (Maxfon).3- Spray micronized sulfur (Kuzavit).'**
+  String get qaad_powder_mildew_treatment;
+
   /// No description provided for @diagnosis_failed.
   ///
   /// In en, this message translates to:
@@ -965,7 +1001,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorLoadingData.
   ///
   /// In en, this message translates to:
-  /// **'An error occurred while loading data.'**
+  /// **'An error occurred while loading data'**
   String get errorLoadingData;
 
   /// No description provided for @tryAgain.
@@ -973,6 +1009,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try Again'**
   String get tryAgain;
+
+  /// No description provided for @noPreviousDiagnoses.
+  ///
+  /// In en, this message translates to:
+  /// **'No items to display currently'**
+  String get noPreviousDiagnoses;
+
+  /// No description provided for @previousDiagnos.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Diagnoses'**
+  String get previousDiagnos;
+
+  /// No description provided for @farmer_page_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Farmer Questions'**
+  String get farmer_page_title;
+
+  /// No description provided for @tab_unanswered.
+  ///
+  /// In en, this message translates to:
+  /// **'unanswerd question'**
+  String get tab_unanswered;
+
+  /// No description provided for @tab_answered.
+  ///
+  /// In en, this message translates to:
+  /// **'answerd question'**
+  String get tab_answered;
+
+  /// No description provided for @label_write_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Write your question here'**
+  String get label_write_question;
+
+  /// No description provided for @button_pick_image.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an Image'**
+  String get button_pick_image;
+
+  /// No description provided for @button_send_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Question'**
+  String get button_send_question;
+
+  /// No description provided for @snackbar_question_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Your question has been sent successfully!'**
+  String get snackbar_question_sent;
+
+  /// No description provided for @label_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Question:'**
+  String get label_question;
+
+  /// No description provided for @label_answer.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer:'**
+  String get label_answer;
+
+  /// No description provided for @filter_comment.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by current farmer'**
+  String get filter_comment;
+
+  /// No description provided for @previousQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Answered Questions'**
+  String get previousQuestions;
+
+  /// No description provided for @pendingQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending Questions'**
+  String get pendingQuestions;
 }
 
 class _AppLocalizationsDelegate

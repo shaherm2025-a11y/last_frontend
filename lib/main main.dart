@@ -16,21 +16,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:plant_diagnosis_app/utils/localization_helper.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:intl/intl.dart';
-import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter/foundation.dart';
-import 'utils/device_id_helper.dart';
-
-
-
-
-
-// ··ÊÌ»
-
-import 'package:uuid/uuid.dart';
-
-
 
 
 // ================= Database Helper =================
@@ -168,42 +153,107 @@ class DatabaseHelper {
         }).toList();
   }
 
-}
-
-
-
-
-
-///  ”ÃÌ· «·œŒÊ· «· ·ﬁ«∆Ì √Ê «” —Ã«⁄ «·„” Œœ„ ≈–« „ÊÃÊœ „”»ﬁ«
-Future<int?> ensureAutoLogin() async {
-  final prefs = await SharedPreferences.getInstance();
-  final existingId = prefs.getInt('farmer_id');
-  if (existingId != null) {
-    print("? Farmer already logged in: $existingId");
-    return existingId;
-  }
-
-  try {
-    final deviceId = await getDeviceId();
-	//final deviceId = await DeviceIdHelper.getDeviceId();
-    final uri = Uri.parse('http://localhost:8000/auto_login'); // √Ê «” »œ· »⁄‰Ê«‰ Œ«œ„ﬂ
-    final response = await http.post(uri, body: {'device_id': deviceId});
-    print (deviceId);
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      final farmerId = data['farmer_id'];
-      await prefs.setInt('farmer_id', farmerId);
-      print("? Farmer registered/logged in automatically: $farmerId");
-      return farmerId;
-    } else {
-      print("?? ›‘· «·« ’«· »«·Œ«œ„: ${response.statusCode}");
+  // ================= Login via backend =================
+  static Future<int?> loginFarmer(String email, String password) async {
+    final uri = Uri.parse('http://localhost:8000/register_or_login'); // ÿπÿØŸëŸÑ ÿ≠ÿ≥ÿ® ÿ≥Ÿäÿ±ŸÅÿ±ŸÉ
+    try {
+      final response = await http.post(uri, body: {
+        'email': email,
+        'password': password,
+      });
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return data['farmer_id'] as int?;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print("Login error: $e");
       return null;
     }
-  } catch (e) {
-    print("? Œÿ√ ›Ì autoLogin: $e");
-    return null;
   }
 }
+
+// ================== LoginPage ==================
+class LoginPage extends StatefulWidget {
+  final Function(String, String, int) onLoginSuccess;
+  const LoginPage({Key? key, required this.onLoginSuccess}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> _login() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please fill all fields")));
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    final farmerId = await DatabaseHelper.loginFarmer(email, password);
+    if (farmerId != null) {
+      widget.onLoginSuccess(email, password, farmerId);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Invalid credentials")));
+    }
+
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Login")),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(labelText: "Email"),
+                  ),
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(labelText: "Password"),
+                  ),
+                  const SizedBox(height: 24),
+                  _isLoading
+                      ? const CircularProgressIndicator()
+                      : ElevatedButton(
+                          onPressed: _login,
+                          child: const Text("Login"),
+                        ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -214,8 +264,9 @@ void main() async {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
   }
-  
-  final farmerId = await ensureAutoLogin();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  final farmerId = prefs.getInt("farmer_id"); // ŸáŸÑ ÿ™ŸÖ ÿ™ÿ≥ÿ¨ŸäŸÑ ÿßŸÑÿØÿÆŸàŸÑ ŸÖÿ≥ÿ®ŸÇŸãÿßÿü
 
   runApp(MyApp(initialFarmerId: farmerId));
 }
@@ -245,6 +296,14 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _onLoginSuccess(String email, String password, int farmerId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('farmer_id', farmerId);
+    await prefs.setString('email', email);      // ÿ≠ŸÅÿ∏ ÿßŸÑÿ®ÿ±ŸäÿØ
+    await prefs.setString('password', password); // ÿ≠ŸÅÿ∏ ŸÉŸÑŸÖÿ© ÿßŸÑŸÖÿ±Ÿàÿ±
+    setState(() => this.farmerId = farmerId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -259,7 +318,10 @@ class _MyAppState extends State<MyApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: SplashScreen(onLocaleChange: _setLocale),
+      // ‚úÖ ÿßŸÑÿ™ÿ®ÿØŸäŸÑ ÿ®ŸäŸÜ LoginPage Ÿà SplashPage
+      home: farmerId == null
+          ? LoginPage(onLoginSuccess: _onLoginSuccess)
+          : SplashScreen(onLocaleChange: _setLocale),
     );
   }
 }
@@ -482,7 +544,6 @@ class _SplashScreenState extends State<SplashScreen>
   }
 }
 
-
 // ================== Diagnosis Page ==================
 class DiagnosisPage extends StatefulWidget {
   const DiagnosisPage({Key? key}) : super(key: key);
@@ -513,7 +574,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       final data = await fetchPreviousDiagnoses();
       setState(() => previousDiagnoses = data);
     } catch (e) {
-      print("?? Error fetching previous diagnoses: $e");
+      print("? Error fetching previous diagnoses: $e");
     }
   }
 
@@ -526,7 +587,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       if (kIsWeb)
         _webImage = imageBytes;
       else
-        _imageFile = File(pickedFile.path);
+        _imageFile = File(pickedFile.path ?? '');
     });
 
     await diagnoseAndSave(imageBytes, pickedFile.name);
@@ -551,16 +612,15 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
       final response = await request.send();
       final respStr = await response.stream.bytesToString();
-
       if (response.statusCode != 200) throw Exception('Failed to diagnose');
 
       final data = json.decode(respStr);
       final diseaseId = data['disease_id'];
       final confidence = data['confidence'];
+      final treatment = data['treatment'] ?? "";
 
       final diseaseMap = LocalizationHelper.getDiseaseMap(context);
       final localizedDisease = diseaseMap[diseaseId] ?? diseaseId;
-      final treatment = diseaseMap["${diseaseId}_treatment"] ?? "";
 
       setState(() {
         _disease = localizedDisease;
@@ -568,6 +628,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
         _treatment = treatment;
       });
 
+      // Õ›Ÿ «· ‘ŒÌ’ ›Ì ﬁ«⁄œ… «·»Ì«‰« 
       final saveUri = Uri.parse('http://localhost:8000/save_diagnosis');
       final base64Image = base64Encode(imageBytes);
 
@@ -586,7 +647,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
       await _loadPreviousDiagnoses();
     } catch (e) {
-      print("?? Error diagnosing or saving: $e");
+      print("? Error diagnosing or saving: $e");
       setState(() => _disease = "ÕœÀ Œÿ√ √À‰«¡ «· ‘ŒÌ’");
     } finally {
       setState(() => _loading = false);
@@ -603,12 +664,15 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
     if (response.statusCode != 200) throw Exception('Failed to fetch previous diagnoses');
 
     final List data = json.decode(response.body);
+	// ? ›· —… «·‰ «∆Ã »ÕÌÀ expert_id == 0 ›ﬁÿ
     final filtered = data.where((e) {
-      final expertId = e['expert_id'] ?? 0;
-      return expertId == 0;
+    final expertId = e['expert_id'] ?? 0;
+    return expertId == 0;
     }).toList();
 
     return filtered.map((e) => e as Map<String, dynamic>).toList();
+
+    //return data.map((e) => e as Map<String, dynamic>).toList();
   }
 
   @override
@@ -620,157 +684,148 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ?? ÊÌœÃ  Õ«·… «·ÿﬁ”
-            const WeatherWidget(),
-            const SizedBox(height: 20),
+            // ? «·⁄„Êœ «·√Ì”— («· ‘ŒÌ’ «·Õ«·Ì)
+            Expanded(
+              flex: 2,
+              child: Column(
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: pickImage,
+                    icon: const Icon(Icons.add_a_photo),
+                    label: Text(loc.selectImage),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green[600],
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size(double.infinity, 50),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
 
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // ?? «·⁄„Êœ «·√Ì”— («· ‘ŒÌ’ «·Õ«·Ì)
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: pickImage,
-                        icon: const Icon(Icons.add_a_photo),
-                        label: Text(loc.selectImage),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green[600],
-                          foregroundColor: Colors.white,
-                          minimumSize: const Size(double.infinity, 50),
+                  if (_imageFile != null || _webImage != null)
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: _imageFile != null
+                          ? Image.file(_imageFile!, height: 300, fit: BoxFit.cover)
+                          : Image.memory(_webImage!, height: 300, fit: BoxFit.cover),
+                    ),
+                  const SizedBox(height: 20),
+
+                  if (_loading)
+                    const CircularProgressIndicator(color: Colors.green),
+
+                  if (_disease != null && !_loading)
+                    Card(
+                      color: Colors.green[50],
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("${loc.result}: $_disease",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: _disease!.toLowerCase().contains("Œÿ√")
+                                        ? Colors.red
+                                        : Colors.green[800])),
+                            const SizedBox(height: 10),
+                            if (_confidence != null)
+                              Text(
+                                "${_confidence!.toStringAsFixed(1)}% ${loc.confidence}",
+                                style: const TextStyle(color: Colors.black54),
+                              ),
+                            const SizedBox(height: 10),
+                            if (_treatment != null && _treatment!.isNotEmpty)
+                              Text("${loc.treatment}: $_treatment",
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.black87)),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                    ),
+                ],
+              ),
+            ),
 
-                      if (_imageFile != null || _webImage != null)
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: _imageFile != null
-                              ? Image.file(_imageFile!, height: 300, fit: BoxFit.cover)
-                              : Image.memory(_webImage!, height: 300, fit: BoxFit.cover),
-                        ),
-                      const SizedBox(height: 20),
+            const SizedBox(width: 20),
 
-                      if (_loading) const CircularProgressIndicator(color: Colors.green),
+            // ? «·⁄„Êœ «·√Ì„‰ («· ‘ŒÌ’«  «·”«»ﬁ…)
+            Expanded(
+              flex: 1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(loc.previousDiagnos,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green[700])),
+                  const SizedBox(height: 10),
+                  if (previousDiagnoses.isEmpty)
+                    Text(loc.noPreviousDiagnoses, style: TextStyle(color: Colors.grey[600])),
+                  ...previousDiagnoses.map((diag) {
+                    final imageBytes = base64Decode(diag['image']);
+                    final diseaseId = diag['disease'];
+                    final confidence = diag['confidence'] ?? 0.0;
+                    final treatment = diag['treatment'] ?? "";
+                    final diseaseMap = LocalizationHelper.getDiseaseMap(context);
+                    final localizedDisease = diseaseMap[diseaseId] ?? diseaseId;
 
-                      if (_disease != null && !_loading)
-                        Card(
-                          color: Colors.green[50],
-                          elevation: 4,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                    return Card(
+                      color: Colors.white,
+                      elevation: 3,
+                      margin: const EdgeInsets.only(bottom: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius:
+                                const BorderRadius.vertical(top: Radius.circular(12)),
+                            child: Image.memory(
+                              imageBytes,
+                              height: 120, // ?  ’€Ì— «·’Ê—…
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("${loc.result}: $_disease",
+                                Text("${loc.result}: $localizedDisease",
                                     style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: _disease!.toLowerCase().contains("Œÿ√")
-                                            ? Colors.red
-                                            : Colors.green[800])),
-                                const SizedBox(height: 10),
-                                if (_confidence != null)
-                                  Text(
-                                    "${_confidence!.toStringAsFixed(1)}% ${loc.confidence}",
-                                    style: const TextStyle(color: Colors.black54),
-                                  ),
-                                const SizedBox(height: 10),
-                                if (_treatment != null && _treatment!.isNotEmpty)
-                                  Text("${loc.treatment}: $_treatment",
+                                        color: Colors.green[800])),
+                                const SizedBox(height: 4),
+                                Text("${(confidence).toStringAsFixed(1)}% ${loc.confidence}",
+                                    style: const TextStyle(fontSize: 12, color: Colors.black54)),
+                                if (treatment.isNotEmpty) ...[
+                                  const SizedBox(height: 4),
+                                  Text("${loc.treatment}: $treatment",
                                       style: const TextStyle(
-                                          fontSize: 16, color: Colors.black87)),
+                                          fontSize: 13, color: Colors.black87)),
+                                ],
                               ],
                             ),
                           ),
-                        ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(width: 20),
-
-                // ?? «·⁄„Êœ «·√Ì„‰ («· ‘ŒÌ’«  «·”«»ﬁ…)
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(loc.previousDiagnos,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green[700])),
-                      const SizedBox(height: 10),
-                      if (previousDiagnoses.isEmpty)
-                        Text(loc.noPreviousDiagnoses,
-                            style: TextStyle(color: Colors.grey[600])),
-                      ...previousDiagnoses.map((diag) {
-                        final imageBytes = base64Decode(diag['image']);
-                        final diseaseId = diag['disease'];
-                        final confidence = diag['confidence'] ?? 0.0;
-                        final diseaseMap = LocalizationHelper.getDiseaseMap(context);
-                        final localizedDisease = diseaseMap[diseaseId] ?? diseaseId;
-                        final treatment = diseaseMap["${diseaseId}_treatment"] ?? "";
-
-                        return Card(
-                          color: Colors.white,
-                          elevation: 3,
-                          margin: const EdgeInsets.only(bottom: 10),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-                                child: Image.memory(
-                                  imageBytes,
-                                  height: 120,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text("${loc.result}: $localizedDisease",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.green[800])),
-                                    const SizedBox(height: 4),
-                                    Text("${(confidence).toStringAsFixed(1)}% ${loc.confidence}",
-                                        style: const TextStyle(
-                                            fontSize: 12, color: Colors.black54)),
-                                    if (treatment.isNotEmpty) ...[
-                                      const SizedBox(height: 4),
-                                      Text("${loc.treatment}: $treatment",
-                                          style: const TextStyle(
-                                              fontSize: 13, color: Colors.black87)),
-                                    ],
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
-                    ],
-                  ),
-                ),
-              ],
+                        ],
+                      ),
+                    );
+                  }),
+                ],
+              ),
             ),
           ],
         ),
@@ -779,184 +834,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
   }
 }
 
-// ================== Weather Widget ==================
-
-class WeatherWidget extends StatefulWidget {
-  const WeatherWidget({Key? key}) : super(key: key);
-
-  @override
-  State<WeatherWidget> createState() => _WeatherWidgetState();
-}
-
-class _WeatherWidgetState extends State<WeatherWidget> {
-  bool _loading = true;
-  String _city = "";
-  String _description = "";
-  double _temp = 0.0;
-  String _mainWeather = "";
-  String _dateString = "";
-
-  @override
-  void initState() {
-    super.initState();
-    _getWeather();
-  }
-
-  Future<void> _getWeather() async {
-    try {
-      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-      if (!serviceEnabled) {
-        setState(() => _description = "Œœ„… «·„Êﬁ⁄ €Ì— „›⁄¯·…");
-        return;
-      }
-
-      LocationPermission permission = await Geolocator.checkPermission();
-      if (permission == LocationPermission.denied) {
-        permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied) {
-          setState(() => _description = " „ —›÷ ≈–‰ «·„Êﬁ⁄");
-          return;
-        }
-      }
-
-      final position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-
-      final lat = position.latitude;
-      final lon = position.longitude;
-
-      // ?? «··€… „‰ ≈⁄œ«œ«  «· ÿ»Ìﬁ
-      final locale = Localizations.localeOf(context).languageCode;
-      final langParam = locale == "ar" ? "ar" : "en";
-
-      const apiKey = "e04da9dcf248d89ed0105343de3270bd";
-      final url = Uri.parse(
-        "https://api.openweathermap.org/data/2.5/weather"
-        "?lat=$lat&lon=$lon&units=metric&lang=$langParam&appid=$apiKey",
-      );
-
-      final response = await http.get(url);
-      final data = json.decode(response.body);
-
-      final now = DateTime.now();
-      final formatter = DateFormat('EEEE° d MMMM', locale == "ar" ? 'ar' : 'en');
-      final dateStr = formatter.format(now);
-
-      setState(() {
-        _city = data["name"];
-        _temp = data["main"]["temp"].toDouble();
-        _description = data["weather"][0]["description"];
-        _mainWeather = data["weather"][0]["main"];
-        _dateString = dateStr;
-        _loading = false;
-      });
-    } catch (e) {
-      setState(() {
-        _description = " ⁄–— Ã·» Õ«·… «·ÿﬁ”";
-        _loading = false;
-      });
-    }
-  }
-
-  // ??  ÕœÌœ «··Ê‰ Õ”» Õ«·… «·ÿﬁ”
-  Color _backgroundColor() {
-    switch (_mainWeather.toLowerCase()) {
-      case "clear":
-        return Colors.orangeAccent;
-      case "clouds":
-        return Colors.blueGrey;
-      case "rain":
-      case "drizzle":
-        return Colors.indigo;
-      case "thunderstorm":
-        return Colors.deepPurple;
-      case "snow":
-        return Colors.lightBlueAccent;
-      default:
-        return Colors.teal;
-    }
-  }
-
-  // ??? √ÌﬁÊ‰… «·ÿﬁ”
-  IconData _weatherIcon() {
-    switch (_mainWeather.toLowerCase()) {
-      case "clear":
-        return Icons.wb_sunny;
-      case "clouds":
-        return Icons.cloud;
-      case "rain":
-      case "drizzle":
-        return Icons.grain;
-      case "thunderstorm":
-        return Icons.flash_on;
-      case "snow":
-        return Icons.ac_unit;
-      default:
-        return Icons.wb_cloudy;
-    }
-  }
-@override
-Widget build(BuildContext context) {
-  return Card(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-    color: _backgroundColor(),
-    elevation: 6,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      child: _loading
-          ? const Center(child: CircularProgressIndicator(color: Colors.white))
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // «· «—ÌŒ
-                Text(
-                  _dateString,
-                  style: const TextStyle(fontSize: 12, color: Colors.white),
-                ),
-                const SizedBox(width: 8),
-
-                // «·√ÌﬁÊ‰…
-                Icon(_weatherIcon(), size: 25, color: Colors.white),
-                const SizedBox(width: 8),
-
-                // œ—Ã… «·Õ—«—…
-               Text(
-                 "${_temp.toStringAsFixed(1)}\u00B0C",
-                 style: const TextStyle(
-                 fontSize: 18,
-                 fontWeight: FontWeight.bold,
-                 color: Colors.white,
-                 ),
-),
-
-                const SizedBox(width: 8),
-
-                // «·Ê’›
-                Text(
-                  _description,
-                  style: const TextStyle(fontSize: 14, color: Colors.white),
-                ),
-                const SizedBox(width: 8),
-
-                // «·„œÌ‰…
-                Text(
-                  _city,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-    ),
-  );
-}
-
-}
 // ================== Pests & Diseases Page ==================
 class PestsDiseasesPage extends StatefulWidget {
   const PestsDiseasesPage({Key? key}) : super(key: key);
@@ -1160,15 +1037,13 @@ class DiseaseDetailsPage extends StatelessWidget {
               ),
             const SizedBox(height: 16),
             _buildDetailSection(t.symptoms, disease['symptoms']),
-			_buildDetailSection(
-                t.alternativeTreatment, disease['alternative_treatment']),
-			_buildDetailSection(
-                t.chemicalTreatment, disease['chemical_treatment']),	
             _buildDetailSection(t.cause, disease['cause']),
             _buildDetailSection(
                 t.preventiveMeasures, disease['preventive_measures']),
-           
-           
+            _buildDetailSection(
+                t.chemicalTreatment, disease['chemical_treatment']),
+            _buildDetailSection(
+                t.alternativeTreatment, disease['alternative_treatment']),
           ],
         ),
       ),

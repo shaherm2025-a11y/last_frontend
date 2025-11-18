@@ -158,6 +158,13 @@
   
   "raspberry_healthy": "Healthy Raspberry",
   
+  "qaad_borer_Qaad_worm": "Qaad borer (Qaad worm)",
+  "qaad_borer_Qaad_worm_treatment": "The following insecticides are used:1- Imidacloprid (Nasf, Mida, Dictator, Washington) 2-Fenpropathrin (Al-Namroud – SW) 3-Deltamethrin (Edward, Fizer) 4- Indoxacarb (Al-Kaboos, Cupboard)", 
+  "qaad_fungal_infection_sis": "Qaad fungal infection(sis)",
+  "qaad_fungal_infection_sis_treatment": "This fungal disease appears after rainfall when humidity is available.Fungicides used to control it include: Azoxystrobin (sold as Al-Qaws or Adis) Myclobutanil (sold as Carptar or Al-Haram)A mixture of Azoxystrobin and Difenoconazole (sold as Al-Fudool or Maxfon)",
+  "qaad_powder_mildew": "powder_mildew in qaad",
+  "qaad_powder_mildew_treatment": "Control measures:1- Reduce humidity.2- Spray a systemic preventive fungicide such as Azoxystrobin + Difenoconazole with additives (Maxfon).3- Spray micronized sulfur (Kuzavit).",
+  
   "diagnosis_failed": "Diagnosis failed",
   "pestsDiseases": "Pests & Diseases",
   "pestsDiseases1": "Pests and Diseases",
@@ -181,8 +188,34 @@
   "selectStage": "Select Stage",
   "causes": "Causes",
   "loading": "Loading...",
-  "errorLoadingData": "An error occurred while loading data.",
-  "tryAgain": "Try Again"
+  "errorLoadingData": "An error occurred while loading data",
+  "tryAgain": "Try Again",
+  "noPreviousDiagnoses": "No previous diagnoses",
+  "previousDiagnos": "Previous Diagnoses",
+  "farmer_page_title": "Farmer Page",
+  "tab_unanswered": "unanswerd question",
+  "tab_answered": "answerd question",
+  "label_write_question": "Write your question here",
+  "button_pick_image": "Choose Image",
+  "button_send_question": "Send Question",
+  "snackbar_question_sent": "Question sent successfully ✅",
+  "label_question": "Question: {question}",
+  "label_answer": "Answer: {answer}",
+  "filter_comment": "Filter by current farmer",
+  "label_question": "سؤال: {question}",
+  "label_answer": "الإجابة: {answer}",
+  "farmer_page_title": "Farmer Questions",
+  "previousQuestions": "Answered Questions",
+  "pendingQuestions": "Pending Questions",
+  "label_write_question": "Write your question here",
+  "button_pick_image": "Pick an Image",
+  "button_send_question": "Send Question",
+  "snackbar_question_sent": "Your question has been sent successfully!",
+  "noPreviousDiagnoses": "No items to display currently",
+  "label_question": "Question:",
+  "label_answer": "Answer:"
+
+
 
 }
 

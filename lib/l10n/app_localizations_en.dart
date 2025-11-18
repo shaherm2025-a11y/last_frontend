@@ -412,6 +412,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get raspberry_healthy => 'Healthy Raspberry';
 
   @override
+  String get qaad_borer_Qaad_worm => 'Qaad borer (Qaad worm)';
+
+  @override
+  String get qaad_borer_Qaad_worm_treatment =>
+      'The following insecticides are used:1- Imidacloprid (Nasf, Mida, Dictator, Washington) 2-Fenpropathrin (Al-Namroud – SW) 3-Deltamethrin (Edward, Fizer) 4- Indoxacarb (Al-Kaboos, Cupboard)';
+
+  @override
+  String get qaad_fungal_infection_sis => 'Qaad fungal infection(sis)';
+
+  @override
+  String get qaad_fungal_infection_sis_treatment =>
+      'This fungal disease appears after rainfall when humidity is available.Fungicides used to control it include: Azoxystrobin (sold as Al-Qaws or Adis) Myclobutanil (sold as Carptar or Al-Haram)A mixture of Azoxystrobin and Difenoconazole (sold as Al-Fudool or Maxfon)';
+
+  @override
+  String get qaad_powder_mildew => 'powder_mildew in qaad';
+
+  @override
+  String get qaad_powder_mildew_treatment =>
+      'Control measures:1- Reduce humidity.2- Spray a systemic preventive fungicide such as Azoxystrobin + Difenoconazole with additives (Maxfon).3- Spray micronized sulfur (Kuzavit).';
+
+  @override
   String get diagnosis_failed => 'Diagnosis failed';
 
   @override
@@ -472,8 +493,51 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loading => 'Loading...';
 
   @override
-  String get errorLoadingData => 'An error occurred while loading data.';
+  String get errorLoadingData => 'An error occurred while loading data';
 
   @override
   String get tryAgain => 'Try Again';
+
+  @override
+  String get noPreviousDiagnoses => 'No items to display currently';
+
+  @override
+  String get previousDiagnos => 'Previous Diagnoses';
+
+  @override
+  String get farmer_page_title => 'Farmer Questions';
+
+  @override
+  String get tab_unanswered => 'unanswerd question';
+
+  @override
+  String get tab_answered => 'answerd question';
+
+  @override
+  String get label_write_question => 'Write your question here';
+
+  @override
+  String get button_pick_image => 'Pick an Image';
+
+  @override
+  String get button_send_question => 'Send Question';
+
+  @override
+  String get snackbar_question_sent =>
+      'Your question has been sent successfully!';
+
+  @override
+  String get label_question => 'Question:';
+
+  @override
+  String get label_answer => 'Answer:';
+
+  @override
+  String get filter_comment => 'Filter by current farmer';
+
+  @override
+  String get previousQuestions => 'Answered Questions';
+
+  @override
+  String get pendingQuestions => 'Pending Questions';
 }
