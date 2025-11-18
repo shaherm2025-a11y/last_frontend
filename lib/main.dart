@@ -186,7 +186,7 @@ Future<int?> ensureAutoLogin() async {
   try {
     final deviceId = await getDeviceId();
 	//final deviceId = await DeviceIdHelper.getDeviceId();
-    final uri = Uri.parse('http://localhost:8000/auto_login'); // √Ê «” »œ· »⁄‰Ê«‰ Œ«œ„ﬂ
+    final uri = Uri.parse('http://192.168.120.66/auto_login'); // √Ê «” »œ· »⁄‰Ê«‰ Œ«œ„ﬂ
     final response = await http.post(uri, body: {'device_id': deviceId});
     print (deviceId);
     if (response.statusCode == 200) {
@@ -544,7 +544,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       final prefs = await SharedPreferences.getInstance();
       final farmerId = prefs.getInt('farmer_id') ?? 0;
 
-      final uri = Uri.parse('http://localhost:8000/predict');
+      final uri = Uri.parse('http://192.168.210.66/predict');
       final request = http.MultipartRequest('POST', uri);
       request.fields['farmer_id'] = farmerId.toString();
       request.files.add(http.MultipartFile.fromBytes('file', imageBytes, filename: filename));
@@ -568,7 +568,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
         _treatment = treatment;
       });
 
-      final saveUri = Uri.parse('http://localhost:8000/save_diagnosis');
+      final saveUri = Uri.parse('http://192.168.210.66/save_diagnosis');
       final base64Image = base64Encode(imageBytes);
 
       await http.post(
@@ -598,7 +598,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
     final farmerId = prefs.getInt('farmer_id');
     if (farmerId == null) return [];
 
-    final uri = Uri.parse('http://localhost:8000/previous_diagnoses/$farmerId');
+    final uri = Uri.parse('http://192.168.210.66/previous_diagnoses/$farmerId');
     final response = await http.get(uri);
     if (response.statusCode != 200) throw Exception('Failed to fetch previous diagnoses');
 
@@ -1396,7 +1396,7 @@ class _FarmerQuestionsPageState extends State<FarmerQuestionsPage> {
     if (_farmerId == null) return;
 
     try {
-      final uri = Uri.parse("http://localhost:8000/get_farmer_questions/$_farmerId");
+      final uri = Uri.parse("http://192.168.120.66/get_farmer_questions/$_farmerId");
       final response = await http.get(uri);
       if (response.statusCode == 200) {
         final List data = json.decode(response.body);
@@ -1452,7 +1452,7 @@ class _FarmerQuestionsPageState extends State<FarmerQuestionsPage> {
     setState(() => _loading = true);
 
     try {
-      final uri = Uri.parse("http://localhost:8000/send_question");
+      final uri = Uri.parse("http://192.168.120.66/send_question");
       final request = http.MultipartRequest('POST', uri);
       request.fields['farmer_id'] = _farmerId.toString();
       request.fields['question'] = _questionController.text.trim();
