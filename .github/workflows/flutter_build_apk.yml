@@ -20,7 +20,8 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'  # عدّل حسب نسخة Flutter عندك
+         channel: 'stable'
+         flutter-version: '3.35.5'
 
       # 3. تثبيت التبعيات
       - name: Install dependencies
