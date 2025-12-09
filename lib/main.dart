@@ -532,8 +532,8 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
    // await diagnoseAndSave(imageBytes, pickedFile.name);
   //}
    Future<void> pickImage() async {
-    try {
-    // ============ 1) WEB ============  
+  try {
+    // ============ 1) WEB ============
     if (kIsWeb) {
       final result = await FilePicker.platform.pickFiles(
         type: FileType.image,
@@ -554,17 +554,46 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       return;
     }
 
-    // ============ 2) ANDROID / iOS (Camera) ============  
+    // ============ 2) ANDROID + iOS ============
     if (Platform.isAndroid || Platform.isIOS) {
-      final XFile? pickedFile =
-          await picker.pickImage(source: ImageSource.camera);
+      // ‰«›–… «·«Œ Ì«— „‰ «·ﬂ«„Ì—« √Ê «·„⁄—÷
+      final option = await showModalBottomSheet<String>(
+        context: context,
+        builder: (ctx) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: const Text("«· ﬁ«ÿ ’Ê—… »«·ﬂ«„Ì—«"),
+                onTap: () => Navigator.pop(ctx, "camera"),
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_library),
+                title: const Text("«Œ Ì«— „‰ «·„⁄—÷"),
+                onTap: () => Navigator.pop(ctx, "gallery"),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      if (option == null) return;
+
+      XFile? pickedFile;
+
+      if (option == "camera") {
+        pickedFile = await picker.pickImage(source: ImageSource.camera);
+      } else {
+        pickedFile = await picker.pickImage(source: ImageSource.gallery);
+      }
 
       if (pickedFile == null) return;
 
       Uint8List imageBytes = await pickedFile.readAsBytes();
 
       setState(() {
-        _imageFile = File(pickedFile.path);
+        _imageFile = File(pickedFile!.path);
         _webImage = null;
       });
 
@@ -572,7 +601,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       return;
     }
 
-    // ============ 3) WINDOWS / MAC / LINUX (File Picker) ============  
+    // ============ 3) WINDOWS / MAC / LINUX ============
     final result = await FilePicker.platform.pickFiles(
       type: FileType.image,
     );
