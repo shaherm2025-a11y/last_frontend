@@ -517,20 +517,82 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
     }
   }
 
-  Future<void> pickImage() async {
-    XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile == null) return;
+ // Future<void> pickImage() async {
+  //  XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  //  if (pickedFile == null) return;
+//
+  //  Uint8List imageBytes = await pickedFile.readAsBytes();
+    //setState(() {
+      //if (kIsWeb)
+        //_webImage = imageBytes;
+    //  else
+      //  _imageFile = File(pickedFile.path);
+   // });
 
-    Uint8List imageBytes = await pickedFile.readAsBytes();
-    setState(() {
-      if (kIsWeb)
-        _webImage = imageBytes;
-      else
+   // await diagnoseAndSave(imageBytes, pickedFile.name);
+  //}
+   Future<void> pickImage() async {
+    try {
+    // ============ 1) WEB ============  
+    if (kIsWeb) {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        withData: true,
+      );
+
+      if (result == null) return;
+
+      final fileBytes = result.files.first.bytes!;
+      final fileName = result.files.first.name;
+
+      setState(() {
+        _webImage = fileBytes;
+        _imageFile = null;
+      });
+
+      await diagnoseAndSave(fileBytes, fileName);
+      return;
+    }
+
+    // ============ 2) ANDROID / iOS (Camera) ============  
+    if (Platform.isAndroid || Platform.isIOS) {
+      final XFile? pickedFile =
+          await picker.pickImage(source: ImageSource.camera);
+
+      if (pickedFile == null) return;
+
+      Uint8List imageBytes = await pickedFile.readAsBytes();
+
+      setState(() {
         _imageFile = File(pickedFile.path);
+        _webImage = null;
+      });
+
+      await diagnoseAndSave(imageBytes, pickedFile.name);
+      return;
+    }
+
+    // ============ 3) WINDOWS / MAC / LINUX (File Picker) ============  
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
+
+    if (result == null) return;
+
+    final file = File(result.files.first.path!);
+    final fileBytes = await file.readAsBytes();
+    final fileName = file.path.split('/').last;
+
+    setState(() {
+      _imageFile = file;
+      _webImage = null;
     });
 
-    await diagnoseAndSave(imageBytes, pickedFile.name);
+    await diagnoseAndSave(fileBytes, fileName);
+  } catch (e) {
+    print("Error picking image: $e");
   }
+}
 
   Future<void> diagnoseAndSave(Uint8List imageBytes, String filename) async {
     setState(() {
