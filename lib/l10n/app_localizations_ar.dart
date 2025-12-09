@@ -191,243 +191,176 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aphidsTreatment => 'بخاخ النيم + ماء وصابون';
 
   @override
-  String get apple_scab => 'جرب التفاح';
+  String get scab => 'جرب النبات';
 
   @override
-  String get apple_scab_treatment =>
-      'استخدم أصناف مقاومة، رش المبيدات الفطرية، واقص الأوراق المصابة.';
+  String get scab_treatment =>
+      'استخدم أصناف مقاومة، رش المبيدات الفطرية، واقص الأوراق المصابة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يرجى الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get apple_black_rot => 'العفن الأسود في التفاح';
+  String get black_rot => 'العفن الاسود';
 
   @override
-  String get apple_black_rot_treatment =>
-      'إزالة الثمار الجافة، استخدام مبيدات فطرية، وتحسين التهوية.';
+  String get black_rot_treatment =>
+      'إزالة الثمار الجافة، استخدام مبيدات فطرية، وتحسين التهوية.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get apple_cedar_apple_rust => 'صدأ الأرز في التفاح';
+  String get cedar_rust => 'صداء الارز';
 
   @override
-  String get apple_cedar_apple_rust_treatment =>
-      'إزالة أشجار الأرز المجاورة، استخدام أصناف مقاومة، ورش مبيدات.';
+  String get cedar_rust_treatment =>
+      'إزالة أشجار الأرز المجاورة، استخدام أصناف مقاومة، ورش مبيدات.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get apple_healthy => 'تفاح سليم';
+  String get healthy =>
+      'نباتات سليم \nملاحظة: للتأكد من دقة وسلامة التشخيص يرجى الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get blueberry_healthy => 'عنبية سليمة';
+  String get powdery_mildew => 'البياض الدقيقي';
 
   @override
-  String get cherry_powdery_mildew => 'البياض الدقيقي في الكرز';
+  String get powdery_mildew_treatment =>
+      'رش الكبريت، تقليم الأجزاء المصابة، وتوفير مسافات مناسبة. 1- كبريت مكروني (كوزافيت)+ ماكسفون 2- كربندازيم (بريمو + الصاخب) 3- ازوكسي استر وبين (القوس+ادريس)  4- مايكلوبيوتانيل ( كاربتار+ الهرم )\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get cherry_powdery_mildew_treatment =>
-      'رش الكبريت، تقليم الأجزاء المصابة، وتوفير مسافات مناسبة. 1- كبريت مكروني (كوزافيت)+ ماكسفون 2- كربندازيم (بريمو + الصاخب) 3- ازوكسي استر وبين (القوس+ادريس)  4- مايكلوبيوتانيل ( كاربتار+ الهرم )';
+  String get gray_leaf_spot => 'تبقع أوراق الذرة الرمادي';
 
   @override
-  String get cherry_healthy => 'كرز سليم';
+  String get gray_leaf_spot_treatment =>
+      'زراعة أصناف مقاومة، تناوب المحاصيل، واستخدام المبيدات الفطرية.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get corn_gray_leaf_spot => 'تبقع أوراق الذرة الرمادي';
+  String get common_rust => 'الصداء الشائع';
 
   @override
-  String get corn_gray_leaf_spot_treatment =>
-      'زراعة أصناف مقاومة، تناوب المحاصيل، واستخدام المبيدات الفطرية.';
+  String get common_rust_treatment =>
+      'زراعة أصناف مقاومة، متابعة الحقل، واستخدام مبيدات عند الحاجة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get corn_common_rust => 'صدأ الذرة الشائع';
+  String get northern_leaf_blight => 'لفحة الاوراق الشمالية';
 
   @override
-  String get corn_common_rust_treatment =>
-      'زراعة أصناف مقاومة، متابعة الحقل، واستخدام مبيدات عند الحاجة.';
+  String get northern_leaf_blight_treatment =>
+      'تناوب المحاصيل، استخدام المبيدات، وتجنب الزراعة المستمرة للذرة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get corn_northern_leaf_blight => 'لفحة أوراق الذرة الشمالية';
+  String get esca => 'إسكا (الحصبة السوداء)';
 
   @override
-  String get corn_northern_leaf_blight_treatment =>
-      'تناوب المحاصيل، استخدام المبيدات، وتجنب الزراعة المستمرة للذرة.';
+  String get esca_treatment =>
+      'تقليم الكروم المصابة، تجنب الجروح، وإزالة النباتات المريضة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get corn_healthy => 'ذرة سليمة';
+  String get leaf_blight => 'لفحة الاوراق';
 
   @override
-  String get grape_black_rot => 'العفن الأسود في العنب';
+  String get leaf_blight_treatment =>
+      'استخدام المبيدات وإزالة الأوراق المصابة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get grape_black_rot_treatment =>
-      'إزالة الأجزاء المصابة، استخدام مبيدات، وتحسين التهوية.';
+  String get bacrerial_spot => 'تبقع بكتيري';
 
   @override
-  String get grape_esca => 'إسكا العنب (الحصبة السوداء)';
+  String get bacrerial_spot_treatment =>
+      'رش النحاس، استخدام أصناف مقاومة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get grape_esca_treatment =>
-      'تقليم الكروم المصابة، تجنب الجروح، وإزالة النباتات المريضة.';
+  String get early_blight => 'اللفحةالمبكرة';
 
   @override
-  String get grape_leaf_blight => 'لفحة أوراق العنب';
+  String get early_blight_treatment =>
+      'إزالة الأوراق المصابة، تناوب المحاصيل، واستخدام المبيدات ازوكسيستروبين +دايفنكونازول (ماكسفون + الفظول ) كربندازيم ( بريمو +الصاخب ابروديون (ريد ور)\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get grape_leaf_blight_treatment =>
-      'استخدام المبيدات وإزالة الأوراق المصابة.';
+  String get late_blight => 'اللفحةالمتاخرة';
 
   @override
-  String get grape_healthy => 'عنب سليم';
+  String get late_blight_treatment =>
+      'إتلاف النباتات المصابة، تجنب الري العلوي، واستخدام المبيدات. و تنص التوصيات على عدم تكرار الرش لاكثر من رشتين خلال الموسم ثم يتم تغير الي مبيد اخر ( 1- ميتالاكسيل +نحاس  2- سيموكاسنيل + نحاس  3- فاموكسادون 4- بروباموكارب هيدروكلورايد  5- ميتالاكسيل +دينيكونازول ) \nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get peach_bacterial_spot => 'تبقع بكتيري في الخوخ';
+  String get leaf_mold => 'عفن الاوراق';
 
   @override
-  String get peach_bacterial_spot_treatment =>
-      'رش النحاس، استخدام أصناف مقاومة.';
+  String get leaf_mold_treatment =>
+      'تحسين التهوية، تجنب الري العلوي، واستخدام المبيدات.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get peach_healthy => 'خوخ سليم';
-
-  @override
-  String get potato_early_blight => 'اللفحة المبكرة في البطاطس';
-
-  @override
-  String get potato_early_blight_treatment =>
-      'إزالة الأوراق المصابة، تناوب المحاصيل، واستخدام المبيدات ازوكسيستروبين +دايفنكونازول (ماكسفون + الفظول ) كربندازيم ( بريمو +الصاخب ابروديون (ريد ور) ';
-
-  @override
-  String get potato_late_blight => 'اللفحة المتأخرة في البطاطس';
-
-  @override
-  String get potato_late_blight_treatment =>
-      'إتلاف النباتات المصابة، تجنب الري العلوي، واستخدام المبيدات.';
-
-  @override
-  String get potato_healthy => 'بطاطس سليمة';
-
-  @override
-  String get pepper_bacterial_spot => 'تبقع بكتيري في الفلفل';
-
-  @override
-  String get pepper_bacterial_spot_treatment =>
-      'استخدام بذور معتمدة، رش النحاس، وتجنب الري العلوي.';
-
-  @override
-  String get pepper_healthy => 'فلفل سليم';
-
-  @override
-  String get tomato_bacterial_spot => 'تبقع بكتيري في الطماطم';
-
-  @override
-  String get tomato_bacterial_spot_treatment =>
-      'استخدام أصناف مقاومة، تناوب المحاصيل، ورش النحاس.';
-
-  @override
-  String get tomato_early_blight => 'اللفحة المبكرة في الطماطم';
-
-  @override
-  String get tomato_early_blight_treatment =>
-      'إزالة الأوراق المصابة، تناوب المحاصيل، واستخدام المبيدات ازوكسيستروبين +دايفنكونازول (ماكسفون + الفظول ) كربندازيم ( بريمو +الصاخب ابروديون (ريد ور)  ';
-
-  @override
-  String get tomato_late_blight => 'اللفحة المتأخرة في الطماطم';
-
-  @override
-  String get tomato_late_blight_treatment =>
-      'إتلاف النباتات المصابة ورش المبيدات.';
-
-  @override
-  String get tomato_leaf_mold => 'عفن أوراق الطماطم';
-
-  @override
-  String get tomato_leaf_mold_treatment =>
-      'تحسين التهوية، تجنب الري العلوي، واستخدام المبيدات.';
-
-  @override
-  String get tomato_septoria_leaf_spot => 'تبقع أوراق الطماطم (سبتوريا)';
+  String get tomato_septoria_leaf_spot => 'تبقع الاوراق (سبتوريا)';
 
   @override
   String get tomato_septoria_leaf_spot_treatment =>
-      'تناوب المحاصيل، إزالة الأوراق المصابة، ورش المبيدات.';
+      'تناوب المحاصيل، إزالة الأوراق المصابة، ورش المبيدات.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get tomato_spider_mites => 'العناكب الحمراء في الطماطم';
+  String get spider_mites => 'العناكب الحمراء';
 
   @override
-  String get tomato_spider_mites_treatment =>
-      'رش مبيدات acaricides، تشجيع الأعداء الحيوية، والري الجيد.';
+  String get spider_mites_treatment =>
+      'تشجيع الأعداء الحيوية، والري الجيد رش مبيدات ، .1- ابامكتين +بيردابين (ميشال) 2- ابامكتين (سلو مكتين) 3-  بيردابين (دبون _فاكرون _ترمنتك )\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get tomato_target_spot => 'تبقع الهدف في الطماطم';
+  String get target_spot => 'تبقع الهدف';
 
   @override
-  String get tomato_target_spot_treatment =>
-      'استخدام المبيدات وإزالة بقايا النباتات المصابة.';
+  String get target_spot_treatment =>
+      'استخدام المبيدات وإزالة بقايا النباتات المصابة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get tomato_yellow_leaf_curl => 'فيروس تجعد أوراق الطماطم الصفراء';
+  String get yellow_leaf_curl => 'فيروس تجعد ألاوراق الصفراء';
 
   @override
-  String get tomato_yellow_leaf_curl_treatment =>
-      'مكافحة الذباب الأبيض، زراعة أصناف مقاومة، واستخدام زيت النيم.';
+  String get yellow_leaf_curl_treatment =>
+      'مكافحة الذباب الأبيض، زراعة أصناف مقاومة، واستخدام زيت النيم.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get tomato_mosaic_virus => 'فيروس موزاييك الطماطم';
+  String get mosaic_virus => 'فيروس موزاييك ';
 
   @override
-  String get tomato_mosaic_virus_treatment =>
-      'إزالة النباتات المصابة، تعقيم الأدوات، ومكافحة المن.';
-
-  @override
-  String get tomato_healthy => 'طماطم سليمة';
-
-  @override
-  String get squash_powdery_mildew => 'البياض الدقيقي في الكوسة';
-
-  @override
-  String get squash_powdery_mildew_treatment =>
-      'رش المبيدات، زراعة أصناف مقاومة، وتجنب الزراعة الكثيفة. 1- كبريت مكروني (كوزافيت)+ ماكسفون 2- كربندازيم (بريمو + الصاخب) 3- ازوكسي استر وبين (القوس+ادريس)  4- مايكلوبيوتانيل ( كاربتار+ الهرم )  ';
+  String get mosaic_virus_treatment =>
+      'إزالة النباتات المصابة، تعقيم الأدوات، ومكافحة المن.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
   String get orange_hlb => 'التدهور السريع (HLB) في البرتقال';
 
   @override
   String get orange_hlb_treatment =>
-      'مكافحة حشرة البسيلا، إزالة الأشجار المصابة، واستخدام أصول مقاومة.';
+      'مكافحة حشرة البسيلا، إزالة الأشجار المصابة، واستخدام أصول مقاومة.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
   String get strawberry_leaf_scorch => 'احتراق أوراق الفراولة';
 
   @override
   String get strawberry_leaf_scorch_treatment =>
-      'إزالة الأوراق المصابة، الري المناسب، واستخدام المبيدات.';
+      'إزالة الأوراق المصابة، الري المناسب، واستخدام المبيدات.\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get strawberry_healthy => 'فراولة سليمة';
+  String get algal => 'الصدأ الطحلبي الأحمر';
 
   @override
-  String get soybean_healthy => 'فول صويا سليم';
+  String get algal_treatment =>
+      '1. إزالة الأجزاء المصابة - قص الفروع الشديدة الإصابة - إزالة الأوراق المتضررة جدًا - التخلص منها خارج المزرعة\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get raspberry_healthy => 'توت علّيق سليم';
+  String get anthracnose => 'لفحة الأنثراكنوز';
 
   @override
-  String get qaad_borer_Qaad_worm => 'دودة القات (قارض القات)';
+  String get anthracnose_treatment =>
+      'إزالة الأوراق والفروع المصابة - تحسين التهوية وتقليل الرطوبة - تجنب الري على الأوراق و استخدام ( 1- كربندازيم (بريمو) 2- كوبراوكسي كلوبرايد 3- ازكي استروبين (اديس))\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get qaad_borer_Qaad_worm_treatment =>
-      'يتم استخدام المبيدات التالية: -1- اميدا كلوبرايد مثل (ناسف –ميدا-ديكتاتور-واشنطن)2--فنبروباثرين مثل (النمرود ) sw -3 -دلتامثرين (ادوارد-فيزر) 4-اندوكساكارب ( الكابوس –كوبورد )';
+  String get brown_blight => 'التبقع البني';
 
   @override
-  String get qaad_fungal_infection_sis => 'Qaad fungal infection(sis)';
+  String get brown_blight_treatment =>
+      'إزالة الأجزاء شديدة الإصابة - تقليل الرطوبة - تعزيز التهوية واستخدام  (1- ابروديون (ريدور) 2- كربندازيم (بريمو)) \nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
-  String get qaad_fungal_infection_sis_treatment =>
-      'This fungal disease appears after rainfall when humidity is available.Fungicides used to control it include: Azoxystrobin (sold as Al-Qaws or Adis) Myclobutanil (sold as Carptar or Al-Haram)A mixture of Azoxystrobin and Difenoconazole (sold as Al-Fudool or Maxfon)';
+  String get gray_blight => 'اللفحة الرماديةأو التبقع الرمادي';
 
   @override
-  String get qaad_powder_mildew => 'البياض الدقيقي في القات';
-
-  @override
-  String get qaad_powder_mildew_treatment =>
-      '1- تقليل من الرطوبة 2- رش ب مبيد فطري جهازي وقائي (ازوكسيستروبين- دايفنكونازول  -مواد مضافة (ماكسفون ) رش كبريت مكروني (كوزافيت)';
+  String get gray_blight_treatment =>
+      '- إزالة الأوراق المصابة - تحسين التهوية وتقليل الري الزائد - تنظيف بقايا النبات حول الجذع\nملاحظة: للتأكد من دقة وسلامة التشخيص يمكنك الرجوع إلى صفحة الخبراء.';
 
   @override
   String get diagnosis_failed => 'فشل التشخيص.';

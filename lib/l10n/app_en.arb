@@ -67,82 +67,68 @@
   
 
 
-  "apple_scab": "Apple Scab",
-  "apple_scab_treatment": "Use resistant varieties, apply fungicides, and prune infected leaves.",
-  "apple_black_rot": "Apple Black Rot",
-  "apple_black_rot_treatment": "Remove mummified fruit, apply fungicides, and improve air circulation.",
-  "apple_cedar_apple_rust": "Apple Cedar Rust",
-  "apple_cedar_apple_rust_treatment": "Remove nearby cedar trees, use resistant cultivars, and apply fungicides.",
-  "apple_healthy": "Healthy Apple",
+  "scab": "scab",
+  "scab_treatment": "Use resistant varieties, apply fungicides, and prune infected leaves.",
+  "black_rot": "Apple Black Rot",
+  "black_rot_treatment": "Remove mummified fruit, apply fungicides, and improve air circulation.",
+  "cedar_rust": "Cedar Rust",
+  "cedar_rust_treatment": "Remove nearby cedar trees, use resistant cultivars, and apply fungicides.",
+  "healthy": "Healthy plant",
 
  
-  "blueberry_healthy": "Healthy Blueberry",
+  
 
  
-  "cherry_powdery_mildew": "Cherry Powdery Mildew",
-  "cherry_powdery_mildew_treatment": "Apply sulfur-based fungicides, prune affected parts, and ensure proper spacing.",
-  "cherry_healthy": "Healthy Cherry",
+  "powdery_mildew": "Powdery Mildew",
+  "powdery_mildew_treatment": "Apply sulfur-based fungicides, prune affected parts, and ensure proper spacing.",
+  
 
 
-  "corn_gray_leaf_spot": "Corn Gray Leaf Spot",
-  "corn_gray_leaf_spot_treatment": "Use resistant hybrids, rotate crops, and apply fungicides.",
-  "corn_common_rust": "Corn Common Rust",
-  "corn_common_rust_treatment": "Plant resistant varieties, monitor crops, and apply fungicides if severe.",
-  "corn_northern_leaf_blight": "Corn Northern Leaf Blight",
-  "corn_northern_leaf_blight_treatment": "Rotate crops, apply fungicides, and avoid continuous corn planting.",
-  "corn_healthy": "Healthy Corn",
+  "gray_leaf_spot": " Gray Leaf Spot",
+  "gray_leaf_spot_treatment": "Use resistant hybrids, rotate crops, and apply fungicides.",
+  "common_rust": "Corn Common Rust",
+  "common_rust_treatment": "Plant resistant varieties, monitor crops, and apply fungicides if severe.",
+  "northern_leaf_blight": "Northern Leaf Blight",
+  "northern_leaf_blight_treatment": "Rotate crops, apply fungicides, and avoid continuous corn planting.",
+
 
  
-  "grape_black_rot": "Grape Black Rot",
-  "grape_black_rot_treatment": "Remove infected parts, apply fungicides, and ensure good ventilation.",
-  "grape_esca": "Grape Esca (Black Measles)",
-  "grape_esca_treatment": "Prune infected vines, avoid wounding, and remove diseased plants.",
-  "grape_leaf_blight": "Grape Leaf Blight",
-  "grape_leaf_blight_treatment": "Use fungicides and remove infected leaves.",
-  "grape_healthy": "Healthy Grape",
+  "black_rot": "Black Rot",
+  "black_rot_treatment": "Remove infected parts, apply fungicides, and ensure good ventilation.",
+  "esca": "Esca (Black Measles)",
+  "esca_treatment": "Prune infected vines, avoid wounding, and remove diseased plants.",
+  "leaf_blight": "Leaf Blight",
+  "leaf_blight_treatment": "Use fungicides and remove infected leaves.",
 
 
-  "peach_bacterial_spot": "Peach Bacterial Spot",
-  "peach_bacterial_spot_treatment": "Apply copper sprays and use resistant varieties.",
-  "peach_healthy": "Healthy Peach",
+  "bacrerial_spot": "Bacterial Spot",
+  "bacrerial_spot_treatment": "Apply copper sprays and use resistant varieties.",
 
 
-  "potato_early_blight": "Potato Early Blight",
-  "potato_early_blight_treatment": "Use resistant varieties, rotate crops, and apply fungicides.",
-  "potato_late_blight": "Potato Late Blight",
-  "potato_late_blight_treatment": "Destroy infected plants, avoid overhead watering, and apply fungicides.",
-  "potato_healthy": "Healthy Potato",
+
+  "early_blight": "Early Blight",
+  "early_blight_treatment": "Use resistant varieties, rotate crops, and apply fungicides.",
+  "late_blight": "Late Blight",
+  "late_blight_treatment": "Destroy infected plants, avoid overhead watering, and apply fungicides.",
+
 
   
-  "pepper_bacterial_spot": "Pepper Bacterial Spot",
-  "pepper_bacterial_spot_treatment": "Use certified seeds, apply copper fungicides, and avoid overhead watering.",
-  "pepper_healthy": "Healthy Pepper",
 
-  
-  "tomato_bacterial_spot": "Tomato Bacterial Spot",
-  "tomato_bacterial_spot_treatment": "Use resistant varieties, rotate crops, and apply copper fungicides.",
-  "tomato_early_blight": "Tomato Early Blight",
-  "tomato_early_blight_treatment": "Remove infected leaves, rotate crops, and apply fungicides.",
-  "tomato_late_blight": "Tomato Late Blight",
-  "tomato_late_blight_treatment": "Destroy infected plants and apply fungicides.",
-  "tomato_leaf_mold": "Tomato Leaf Mold",
-  "tomato_leaf_mold_treatment": "Provide ventilation, avoid overhead watering, and use fungicides.",
-  "tomato_septoria_leaf_spot": "Tomato Septoria Leaf Spot",
+  "leaf_mold": "Leaf Mold",
+  "leaf_mold_treatment": "Provide ventilation, avoid overhead watering, and use fungicides.",
+  "tomato_septoria_leaf_spot": "Septoria Leaf Spot",
   "tomato_septoria_leaf_spot_treatment": "Rotate crops, remove infected leaves, and apply fungicides.",
-  "tomato_spider_mites": "Tomato Spider Mites",
-  "tomato_spider_mites_treatment": "Spray miticides, encourage natural predators, and irrigate properly.",
-  "tomato_target_spot": "Tomato Target Spot",
-  "tomato_target_spot_treatment": "Use fungicides and remove infected plant debris.",
-  "tomato_yellow_leaf_curl": "Tomato Yellow Leaf Curl Virus",
-  "tomato_yellow_leaf_curl_treatment": "Control whiteflies, use resistant varieties, and apply neem oil.",
-  "tomato_mosaic_virus": "Tomato Mosaic Virus",
-  "tomato_mosaic_virus_treatment": "Remove infected plants, disinfect tools, and control aphids.",
-  "tomato_healthy": "Healthy Tomato",
+  "spider_mites": "Spider Mites",
+  "spider_mites_treatment": "Spray miticides, encourage natural predators, and irrigate properly.",
+  "target_spot": "Target Spot",
+  "target_spot_treatment": "Use fungicides and remove infected plant debris.",
+  "yellow_leaf_curl": " Yellow Leaf Curl Virus",
+  "yellow_leaf_curl_treatment": "Control whiteflies, use resistant varieties, and apply neem oil.",
+  "mosaic_virus": " Mosaic Virus",
+  "mosaic_virus_treatment": "Remove infected plants, disinfect tools, and control aphids.",
+
 
   
-  "squash_powdery_mildew": "Squash Powdery Mildew",
-  "squash_powdery_mildew_treatment": "Apply fungicides, use resistant varieties, and avoid dense planting.",
-
  
   "orange_hlb": "Orange Citrus Greening (HLB)",
   "orange_hlb_treatment": "Control psyllid insects, remove infected trees, and use resistant rootstocks.",
@@ -150,20 +136,19 @@
   
   "strawberry_leaf_scorch": "Strawberry Leaf Scorch",
   "strawberry_leaf_scorch_treatment": "Remove infected leaves, irrigate properly, and apply fungicides.",
-  "strawberry_healthy": "Healthy Strawberry",
-
  
-  "soybean_healthy": "Healthy Soybean",
-
+  "algal": "algal",
+  "algal_treatment": "1. Remove the infected parts – prune the heavily infected branches – remove the severely damaged leaves – dispose of them outside the farm.",
   
-  "raspberry_healthy": "Healthy Raspberry",
+  "anthracnose": "Anthracnose",
+  "anthracnose_treatment": "1- Remove infected leaves and branches 2- Improve air circulation 3- Avoid overhead irrigation",
   
-  "qaad_borer_Qaad_worm": "Qaad borer (Qaad worm)",
-  "qaad_borer_Qaad_worm_treatment": "The following insecticides are used:1- Imidacloprid (Nasf, Mida, Dictator, Washington) 2-Fenpropathrin (Al-Namroud – SW) 3-Deltamethrin (Edward, Fizer) 4- Indoxacarb (Al-Kaboos, Cupboard)", 
-  "qaad_fungal_infection_sis": "Qaad fungal infection(sis)",
-  "qaad_fungal_infection_sis_treatment": "This fungal disease appears after rainfall when humidity is available.Fungicides used to control it include: Azoxystrobin (sold as Al-Qaws or Adis) Myclobutanil (sold as Carptar or Al-Haram)A mixture of Azoxystrobin and Difenoconazole (sold as Al-Fudool or Maxfon)",
-  "qaad_powder_mildew": "powder_mildew in qaad",
-  "qaad_powder_mildew_treatment": "Control measures:1- Reduce humidity.2- Spray a systemic preventive fungicide such as Azoxystrobin + Difenoconazole with additives (Maxfon).3- Spray micronized sulfur (Kuzavit).",
+   
+  "brown_blight": "Brown Blight",
+  "brown_blight_treatment": "- Remove severely infected parts - Reduce humidity - Increase ventilation",
+  
+  "gray_blight": "Gray Blight",
+  "gray_blight_treatment": "- Remove infected leaves - Improve ventilation and avoid excessive irrigation - Clean plant debris around the base",
   
   "diagnosis_failed": "Diagnosis failed",
   "pestsDiseases": "Pests & Diseases",
