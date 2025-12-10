@@ -213,6 +213,12 @@ void main() async {
   } else if (Platform.isWindows || Platform.isLinux) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
+	// ÊåíÆÉ SQLite + ÇÓÊíÑÇÏ JSON ÅĞÇ ßÇäÊ ÇáŞÇÚÏÉ İÇÑÛÉ
+    await DatabaseHelper.getDatabase();
+  }
+   // ====== Android / iOS ======
+  else {
+    await DatabaseHelper.getDatabase(); // åĞÇ íÔÛøá ÇáÅäÔÇÁ + ÇáÇÓÊíÑÇÏ
   }
   
   final farmerId = await ensureAutoLogin();
@@ -1049,8 +1055,10 @@ Widget build(BuildContext context) {
 
 }
 // ================== Pests & Diseases Page ==================
+
 class PestsDiseasesPage extends StatefulWidget {
   const PestsDiseasesPage({Key? key}) : super(key: key);
+
   @override
   State<PestsDiseasesPage> createState() => _PestsDiseasesPageState();
 }
@@ -1064,14 +1072,23 @@ class _PestsDiseasesPageState extends State<PestsDiseasesPage> {
   @override
   void initState() {
     super.initState();
-    _loadCrops();
+    _initializeData();
+  }
+
+  Future<void> _initializeData() async {
+    // ÇáåÇÊİ İŞØ: ÇÓÊÎÏÇã SQLite æÇÓÊíÑÇÏ ÇáÈíÇäÇÊ
+    if (!kIsWeb) {
+      await DatabaseHelper.getDatabase();
+    }
+
+    // ÊÍãíá ÇáãÍÇÕíá (SQLite Úáì ÇáåÇÊİ¡ JSON Úáì ÇáæíÈ)
+    await _loadCrops();
   }
 
   Future<void> _loadCrops() async {
     final data = kIsWeb
         ? await DatabaseHelper.getCropsFromJson()
         : await DatabaseHelper.getCrops();
-    print("ğŸ“Œ Crops Loaded: $data"); // â† ØªØ­Ù‚Ù‚
     setState(() => crops = data);
   }
 
@@ -1079,23 +1096,24 @@ class _PestsDiseasesPageState extends State<PestsDiseasesPage> {
     final data = kIsWeb
         ? await DatabaseHelper.getStagesByCropFromJson(cropId)
         : await DatabaseHelper.getStagesByCrop(cropId);
+
     setState(() {
       stages = data;
       stageDiseases.clear();
     });
+
     for (var stage in data) {
       final diseases = kIsWeb
           ? await DatabaseHelper.getDiseasesByCropAndStageFromJson(
               cropId, stage['id'])
-          : await DatabaseHelper.getDiseasesByCropAndStage(
-              cropId, stage['id']);
+          : await DatabaseHelper.getDiseasesByCropAndStage(cropId, stage['id']);
       setState(() => stageDiseases[stage['id']] = diseases);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!; // âœ… Ø§Ù„ØªØ±Ø¬Ù…Ø©
+    final t = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(title: Text(t.pestsDiseases)),
@@ -1104,7 +1122,6 @@ class _PestsDiseasesPageState extends State<PestsDiseasesPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ğŸ”½ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© Ø§Ù„Ù…Ù†Ø³Ø¯Ù„Ø© Ù„Ù„Ù…Ø­Ø§ØµÙŠÙ„
             DropdownButtonFormField<int>(
               decoration: InputDecoration(
                 labelText: t.selectCrop,
@@ -1115,8 +1132,8 @@ class _PestsDiseasesPageState extends State<PestsDiseasesPage> {
               value: selectedCropId,
               items: crops.map((crop) {
                 final imageName = crop['name_en']?.toString() ?? '';
-                // âœ… Ø¹Ø±Ø¶ Ø§Ø³Ù… Ø§Ù„Ù…Ø­ØµÙˆÙ„ Ø­Ø³Ø¨ Ø§Ù„Ù„ØºØ©
-                final cropName = Localizations.localeOf(context).languageCode == 'ar'
+                final cropName = Localizations.localeOf(context).languageCode ==
+                        'ar'
                     ? crop['name']
                     : crop['name_en'] ?? crop['name'];
 
@@ -1145,8 +1162,6 @@ class _PestsDiseasesPageState extends State<PestsDiseasesPage> {
               },
             ),
             const SizedBox(height: 20),
-
-            // ğŸ“Œ Ø¹Ø±Ø¶ Ø§Ù„Ù…Ø±Ø§Ø­Ù„ ÙˆØ§Ù„Ø£Ù…Ø±Ø§Ø¶
             Expanded(
               child: selectedCropId == null
                   ? Center(child: Text(t.noCropSelected))
