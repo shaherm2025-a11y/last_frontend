@@ -39,9 +39,6 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-    - assets/diseases_all.json
-    - assets/placeholder.png
-    - assets/logo.png
     - assets/images/soil.jpg
     - assets/images/protection.jpg
     - assets/images/pests.jpg
@@ -49,59 +46,16 @@ flutter:
     - assets/images/seasons.jpg
     - assets/images/books.jpg
     - assets/images/support.jpg
-    - assets/images/tomato_icon.png
-    - assets/images/potato_icon.png
-    - assets/images/wheat_icon.png
-    - assets/images/corn_icon.png
-    - assets/images/pepper_icon.png
-    - assets/images/cucumber_icon.png
-    - assets/images/rice_icon.png
-    - assets/images/strawberry_icon.png
-    - assets/images/grape_icon.png
-    - assets/images/apple_icon.png
-    - assets/images/apple_fire_blight.png
-    - assets/images/grape_downy.png
-    - assets/images/strawberry_grey_mold.png
-    - assets/images/rice_blast.png
-
-    # 🦠 أمراض الطماطم
-    - assets/images/tomato_wilt.png
-    - assets/images/tomato_soft_rot.png
-    - assets/images/tomato_powder.png
-    - assets/images/aphids.png
-    - assets/images/whitefly.png
-    - assets/images/tomato_early_blight.png
-    - assets/images/blossom_rot.png
-    - assets/images/gray_mold.png
-    - assets/images/maize_rust.png
-
-    # 🥔 أمراض البطاطس
-    - assets/images/potato_blight.png
-    - assets/images/potato_dry_rot.png
-    - assets/images/beetle.png
-
-    # 🌾 أمراض القمح
-    - assets/images/yellow_rust.png
-    - assets/images/wheat_powder.png
-    - assets/images/smut.png
-
-    # 🌽 أمراض الذرة
-    - assets/images/armyworm.png
-    - assets/images/fusarium.png
-
-    # 🌶️ أمراض الفلفل
-    - assets/images/pepper_wilt.png
-    - assets/images/red_spider.png
-    - assets/images/pepper_leaf_spot.png
-
-    # 🥒 أمراض الخيار
-    - assets/images/cucumber_downy.png
-    - assets/images/bacterial_wilt.png
+   
     
-     # ========== Database & JSON ==========
+    # ========== Database & JSON ==========
     - assets/plantix_final.db
     - assets/plant_relational.json
     - assets/crops_ar.json
+    - assets/diseases_all.json
+    
+    # logo 
+    - assets/logo.png
 
     # ========== image folders ==========
     - assets/disease_images/
