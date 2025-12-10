@@ -50,26 +50,34 @@ class DatabaseHelper {
   static String get alternativeCol =>
       isArabic ? 'alternative_treatment' : 'alternative_treatment_en';
 
+  
   static Future<Database> getDatabase() async {
-    if (_db != null) return _db!;
-    if (kIsWeb) throw Exception("Web uses JSON, not SQLite");
+  if (_db != null) return _db!;
+  if (kIsWeb) throw Exception("Web uses JSON, not SQLite");
 
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = p.join(documentsDirectory.path, "plantix_final.db");
+  // ÇáãÓÇÑ ÇáÕÍíÍ áŞÇÚÏÉ ÇáÈíÇäÇÊ Úáì ÃäÏÑæíÏ
+  String dbPath = await getDatabasesPath();
+  String path = p.join(dbPath, "plantix_final.db");
 
-    bool exists = await File(path).exists();
-    if (!exists) {
-      print("ğŸ“Œ Ù†Ø³Ø® Ù‚Ø§Ø¹Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ù…Ù† assets Ù„Ø£ÙˆÙ„ Ù…Ø±Ø©...");
-      ByteData data = await rootBundle.load("assets/plantix_final.db");
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      await File(path).writeAsBytes(bytes, flush: true);
-    }
+  // åá ÇáŞÇÚÏÉ ãæÌæÏÉ¿ ÅĞÇ áÇ ÇäÓÎåÇ ãä assets
+  bool exists = await File(path).exists();
+  if (!exists) {
+    print("? äÓÎ ŞÇÚÏÉ ÇáÈíÇäÇÊ áÃæá ãÑÉ...");
+    await Directory(dbPath).create(recursive: true);
 
-    _db = await openDatabase(path, readOnly: true);
-	//_db = await openDatabase(path);
-    return _db!;
+    ByteData data = await rootBundle.load("assets/plantix_final.db");
+    List<int> bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+    await File(path).writeAsBytes(bytes, flush: true);
+    print("? ÊãÊ äÓÎ ÇáŞÇÚÏÉ ÈäÌÇÍ");
   }
+
+  // ÇİÊÍ ÇáŞÇÚÏÉ
+  _db = await openDatabase(path, readOnly: false);
+  return _db!;
+}
+
 
   // ================= Web JSON =================
   static Map<int, dynamic> _jsonData = {};
