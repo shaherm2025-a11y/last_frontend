@@ -97,9 +97,13 @@ flutter:
     # 🥒 أمراض الخيار
     - assets/images/cucumber_downy.png
     - assets/images/bacterial_wilt.png
+    
+     # ========== Database & JSON ==========
     - assets/plantix_final.db
     - assets/plant_relational.json
     - assets/crops_ar.json
+
+    # ========== image folders ==========
     - assets/disease_images/
     - assets/plantix_icons/
 

@@ -66,8 +66,8 @@ class DatabaseHelper {
       await File(path).writeAsBytes(bytes, flush: true);
     }
 
-   // _db = await openDatabase(path, readOnly: true);
-	_db = await openDatabase(path);
+    _db = await openDatabase(path, readOnly: true);
+	//_db = await openDatabase(path);
     return _db!;
   }
 
