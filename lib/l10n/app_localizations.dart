@@ -458,6 +458,18 @@ abstract class AppLocalizations {
   /// **'Neem spray + soap water'**
   String get aphidsTreatment;
 
+  /// No description provided for @takephoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take an image'**
+  String get takephoto;
+
+  /// No description provided for @selectimages.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Image'**
+  String get selectimages;
+
   /// No description provided for @scab.
   ///
   /// In en, this message translates to:

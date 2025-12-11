@@ -194,6 +194,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aphidsTreatment => 'Neem spray + soap water';
 
   @override
+  String get takephoto => 'Take an image';
+
+  @override
+  String get selectimages => 'Select Image';
+
+  @override
   String get scab => 'scab';
 
   @override

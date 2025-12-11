@@ -546,6 +546,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
    // await diagnoseAndSave(imageBytes, pickedFile.name);
   //}
+  
    Future<void> pickImage() async {
   try {
     // ============ 1) WEB ============
@@ -572,6 +573,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
     // ============ 2) ANDROID + iOS ============
     if (Platform.isAndroid || Platform.isIOS) {
       // ‰«›–… «·«Œ Ì«— „‰ «·ﬂ«„Ì—« √Ê «·„⁄—÷
+	  final loc = AppLocalizations.of(context)!;
       final option = await showModalBottomSheet<String>(
         context: context,
         builder: (ctx) => SafeArea(
@@ -580,12 +582,12 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
             children: [
               ListTile(
                 leading: const Icon(Icons.camera_alt),
-                title: const Text("«· ﬁ«ÿ ’Ê—… »«·ﬂ«„Ì—«"),
+                title: Text(loc.takephoto),
                 onTap: () => Navigator.pop(ctx, "camera"),
               ),
               ListTile(
                 leading: const Icon(Icons.photo_library),
-                title: const Text("«Œ Ì«— „‰ «·„⁄—÷"),
+                title: Text(loc.selectimages),
                 onTap: () => Navigator.pop(ctx, "gallery"),
               ),
             ],

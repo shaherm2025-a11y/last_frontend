@@ -191,6 +191,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get aphidsTreatment => 'بخاخ النيم + ماء وصابون';
 
   @override
+  String get takephoto => 'الكاميرا';
+
+  @override
+  String get selectimages => 'اختيار صورة';
+
+  @override
   String get scab => 'جرب النبات';
 
   @override
