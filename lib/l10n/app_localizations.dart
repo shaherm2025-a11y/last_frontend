@@ -545,7 +545,7 @@ abstract class AppLocalizations {
   /// No description provided for @common_rust_treatment.
   ///
   /// In en, this message translates to:
-  /// **'Plant resistant varieties, monitor crops, and apply fungicides if severe.'**
+  /// **'Plant resistant varieties, monitor crops, and apply fungicides if severe.\n difenoconazol'**
   String get common_rust_treatment;
 
   /// No description provided for @northern_leaf_blight.
@@ -737,7 +737,7 @@ abstract class AppLocalizations {
   /// No description provided for @anthracnose_treatment.
   ///
   /// In en, this message translates to:
-  /// **'1- Remove infected leaves and branches 2- Improve air circulation 3- Avoid overhead irrigation'**
+  /// **'1- Remove infected leaves and branches \n 2- Improve air circulation \n 3- Avoid overhead irrigation \n Cymoxanil 30%+famoxadon 22%WG'**
   String get anthracnose_treatment;
 
   /// No description provided for @brown_blight.

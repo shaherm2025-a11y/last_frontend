@@ -242,7 +242,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get common_rust_treatment =>
-      'Plant resistant varieties, monitor crops, and apply fungicides if severe.';
+      'Plant resistant varieties, monitor crops, and apply fungicides if severe.\n difenoconazol';
 
   @override
   String get northern_leaf_blight => 'Northern Leaf Blight';
@@ -354,7 +354,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get anthracnose_treatment =>
-      '1- Remove infected leaves and branches 2- Improve air circulation 3- Avoid overhead irrigation';
+      '1- Remove infected leaves and branches \n 2- Improve air circulation \n 3- Avoid overhead irrigation \n Cymoxanil 30%+famoxadon 22%WG';
 
   @override
   String get brown_blight => 'Brown Blight';

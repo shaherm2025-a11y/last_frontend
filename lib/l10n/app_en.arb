@@ -72,7 +72,7 @@
   "scab": "scab",
   "scab_treatment": "Use resistant varieties, apply fungicides, and prune infected leaves.",
   "black_rot": "Apple Black Rot",
-  "black_rot_treatment": "Remove mummified fruit, apply fungicides, and improve air circulation.",
+  "black_rot_treatment": "Remove mummified fruit, apply fungicides, and improve air circulation.\n Thiofluzamid 30% SC+Methyl",
   "cedar_rust": "Cedar Rust",
   "cedar_rust_treatment": "Remove nearby cedar trees, use resistant cultivars, and apply fungicides.",
   "healthy": "Healthy plant",
@@ -89,7 +89,7 @@
   "gray_leaf_spot": " Gray Leaf Spot",
   "gray_leaf_spot_treatment": "Use resistant hybrids, rotate crops, and apply fungicides.",
   "common_rust": "Corn Common Rust",
-  "common_rust_treatment": "Plant resistant varieties, monitor crops, and apply fungicides if severe.",
+  "common_rust_treatment": "Plant resistant varieties, monitor crops, and apply fungicides if severe.\n difenoconazol",
   "northern_leaf_blight": "Northern Leaf Blight",
   "northern_leaf_blight_treatment": "Rotate crops, apply fungicides, and avoid continuous corn planting.",
 
@@ -143,7 +143,7 @@
   "algal_treatment": "1. Remove the infected parts – prune the heavily infected branches – remove the severely damaged leaves – dispose of them outside the farm.",
   
   "anthracnose": "Anthracnose",
-  "anthracnose_treatment": "1- Remove infected leaves and branches 2- Improve air circulation 3- Avoid overhead irrigation",
+  "anthracnose_treatment": "1- Remove infected leaves and branches \n 2- Improve air circulation \n 3- Avoid overhead irrigation \n Cymoxanil 30%+famoxadon 22%WG",
   
    
   "brown_blight": "Brown Blight",
